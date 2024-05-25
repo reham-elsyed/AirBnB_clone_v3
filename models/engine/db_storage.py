@@ -86,7 +86,7 @@ class DBStorage:
             else:
                 return
             return
-    
+
     def count(self, cls=None):
         """count the number of matching the search word"""
         if not cls:
