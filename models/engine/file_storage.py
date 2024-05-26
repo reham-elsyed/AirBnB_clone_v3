@@ -80,14 +80,16 @@ class FileStorage:
 
     def get(self, cls, id):
         """ retrieves one object """
-        obj_dict = {}
-        obj = None
-        if cls:
-            obj_dict = FileStorage.__objects.values()
-            for item in obj_dict:
-                if item.id == id:
-                    obj = item
-            return obj
+        if cls and id:
+            if cls in CNC.values() and isinstanceof(id, str):
+                all_objects = self.all(cls)
+                for key, value in all_objects.items():
+                    if key.split('.')[1] == id:
+                        return value
+            else:
+                return
+        return
+
 
     def count(self, cls=None):
         """ counts number of objects of a class in storage """
